@@ -1,0 +1,227 @@
+﻿
+<script>
+
+    function sumarDistribucion()
+    {
+        $(".alert").alert();
+        dRelativa1 = tryParseFloat($('#drelativa1').val(),0);
+        dRelativa2 = tryParseFloat($('#drelativa2').val(),0);
+        dRelativa3 = tryParseFloat($('#drelativa3').val(),0);
+        dRelativa4 = tryParseFloat($('#drelativa4').val(),0);
+        dRelativa5 = tryParseFloat($('#drelativa5').val(),0);
+
+        total = dRelativa1 + dRelativa2 + dRelativa3+ dRelativa4 + dRelativa5;
+        
+       
+        if (total.toFixed(4) <= 1) {
+            $('#dacomulada1').val((parseFloat(dRelativa1)).toFixed(2));
+            dAcomulada1 = $('#dacomulada1').val();
+
+            $('#dacomulada2').val((parseFloat(dRelativa1) + parseFloat(dRelativa2)).toFixed(2));
+            dAcomulada2 = $('#dacomulada2').val();
+
+            $('#dacomulada3').val((parseFloat(dAcomulada2) + parseFloat(dRelativa3)).toFixed(2));
+            dAcomulada3 = $('#dacomulada3').val();
+
+            $('#dacomulada4').val((parseFloat(dAcomulada3) + parseFloat(dRelativa4)).toFixed(2));
+            dAcomulada4 = $('#dacomulada4').val();
+
+            $('#dacomulada5').val((parseFloat(dAcomulada4) + parseFloat(dRelativa5)).toFixed(2));
+            dAcomulada5 = $('#dacomulada5').val();
+
+        }
+        else
+        {
+            alert('La frecuencia exede la unidad.');
+        }
+
+    }
+
+    function sumarRetraso() {
+        rRelativa1 = tryParseFloat($('#rrelativa1').val(), 0);
+        rRelativa2 = tryParseFloat($('#rrelativa2').val(), 0);
+        rRelativa3 = tryParseFloat($('#rrelativa3').val(), 0);
+        rRelativa4 = tryParseFloat($('#rrelativa4').val(), 0);
+        rRelativa5 = tryParseFloat($('#rrelativa5').val(), 0);
+
+        total = rRelativa1 + rRelativa2+ rRelativa3 + rRelativa4 + rRelativa5;
+
+
+        if (total.toFixed(4) <= 1) {
+            $('#racomulada1').val((parseFloat(rRelativa1)).toFixed(2));
+            rAcomulada1 = $('#racomulada1').val();
+
+            $('#racomulada2').val((parseFloat(rRelativa1) + parseFloat(rRelativa2)).toFixed(2));
+            rAcomulada2 = $('#racomulada2').val();
+
+            $('#racomulada3').val((parseFloat(rAcomulada2) + parseFloat(rRelativa3)).toFixed(2));
+            rAcomulada3 = $('#racomulada3').val();
+
+            $('#racomulada4').val((parseFloat(rAcomulada3) + parseFloat(rRelativa4)).toFixed(2));
+            rAcomulada4 = $('#racomulada4').val();
+
+            $('#racomulada5').val((parseFloat(rAcomulada4) + parseFloat(rRelativa5)).toFixed(2));
+            rAcomulada5 = $('#racomulada5').val();
+
+        }
+        else {
+            alert('La frecuencia exede la unidad.');
+        }
+
+    }
+
+    function tryParseFloat(str, defaultValue)
+    {
+        var retValue = defaultValue;
+        if (str != null)
+        {
+            if (str.length > 0)
+            {
+                if (!isNaN(str))
+                {
+                    retValue = parseFloat(str);
+                }
+            }
+        } return retValue;
+    }
+
+</script>
+
+@{
+    ViewBag.Title = "Ingreso";
+}
+<div class="row">
+    <div class="col-xs-6">
+        <h2>Ingreso de variables</h2>
+    </div>
+    <div class="col-xs-6">
+
+        <br />
+        
+        <!-- Button trigger modal -->
+        <button style="align-self:center" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+            Ayuda ?
+        </button>
+
+        <!-- Modal -->
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title" id="myModalLabel">Ayuda</h4>
+                    </div>
+                    <div class="modal-body">
+                        Aqui la ayuda
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+    </div>
+    </div>
+<p/>
+<br/>
+<br/>
+    @using (Html.BeginForm("Aleatorios", "Inventario", FormMethod.Post))
+    {
+        <div class="row">
+         
+    <div class="col-md-4">
+        <label> Cantidad de pedido (Q)</label>
+        <input id="cantidadpedido" name="cantidadpedido" required="required" class="form-control">
+
+    </div>
+    <div class="col-md-4">
+        <label> Inventario inicial</label>
+        <input id="inventarioinicial" name="inventarioinicial" required="required" class="form-control">
+    </div>
+    <div class="col-md-4">
+        <label> Punto de reorden</label>
+        <input id="puntoreorden" name="puntoreorden" required="required" class="form-control">
+    </div>
+
+
+    <div class="col-md-6">
+
+        <h3>Distribucion</h3>
+
+
+        <table class="table table-condensed">
+            <tr>
+                <td>Demanda</td>
+                <td>Frecuencia Relativa</td>
+                <td>Frecuencia Acomulada</td>
+            </tr>
+            <tr>
+                <td><input id="demanda1" name="demanda1" required="required" class="input-sm"></td>
+                <td><input id="drelativa1" name="drelativa1" required="required" class="form-control" onkeyup="sumarDistribucion()"></td>
+                <td><input id="dacomulada1" name="dacomulada1" required="required" readonly="readonly" class="form-control"></td>
+            </tr>
+            <tr>
+                <td><input id="demanda2" name="demanda2" required="required" class="input-sm"></td>
+                <td><input id="drelativa2" name="drelativa2" required="required" class="form-control" onkeyup="sumarDistribucion()"></td>
+                <td><input id="dacomulada2" name="dacomulada2" required="required" readonly="readonly" class="form-control"></td>
+            </tr>
+            <tr>
+                <td><input id="demanda3" name="demanda3" required="required" class="input-sm"></td>
+                <td><input id="drelativa3" name="drelativa3" required="required" class="form-control" onkeyup="sumarDistribucion()"></td>
+                <td><input id="dacomulada3" name="dacomulada3" required="required" readonly="readonly" class="form-control"></td>
+            </tr>
+            <tr>
+                <td><input id="demand4" name="demanda4" required="required" class="input-sm"></td>
+                <td><input id="drelativa4" name="drelativa4" required="required" class="form-control" onkeyup="sumarDistribucion()"></td>
+                <td><input id="dacomulada4" name="dacomulada4" required="required" readonly="readonly" class="form-control"></td>
+            </tr>
+            <tr>
+                <td><input id="demanda5" name="demanda5" required="required" class="input-sm"></td>
+                <td><input id="drelativa5" name="drelativa5" required="required" class="form-control" onkeyup="sumarDistribucion()"></td>
+                <td><input id="dacomulada5" name="dacomulada5" required="required" readonly="readonly" class="form-control"></td>
+            </tr>
+
+        </table>
+
+    </div>
+    <div class="col-md-6">
+        <h3>Retraso</h3>
+        <table class="table table-condensed">
+            <tr>
+                <td>Retraso</td>
+                <td>Frecuencia Relativa</td>
+                <td>Frecuencia Acomulada</td>
+            </tr>
+            <tr>
+                <td><input id="retraso1" name="retraso1" required="required" class="input-sm"></td>
+                <td><input id="rrelativa1" name="rrelativa1" required="required" class="form-control" onkeyup="sumarRetraso()"></td>
+                <td><input id="racomulada1" name="racomulada1" required="required" readonly="readonly" class="form-control"></td>
+            </tr>
+            <tr>
+                <td><input id="retraso2" name="retraso2" required="required" class="input-sm"></td>
+                <td><input id="rrelativa2" name="rrelativa2" required="required" class="form-control" onkeyup="sumarRetraso()"></td>
+                <td><input id="racomulada2" name="racomulada2" required="required" readonly="readonly" class="form-control"></td>
+            </tr>
+            <tr>
+                <td><input id="retraso3" name="retraso3" required="required" class="input-sm"></td>
+                <td><input id="rrelativa3" name="rrelativa3" class="form-control" onkeyup="sumarRetraso()"></td>
+                <td><input id="racomulada3" name="racomulada3" readonly="readonly" class="form-control"></td>
+            </tr>
+            <tr>
+                <td><input id="retraso4" name="retraso4" required="required" class="input-sm"></td>
+                <td><input id="rrelativa4" name="rrelativa4" required="required" class="form-control" onkeyup="sumarRetraso()"></td>
+                <td><input id="racomulada4" name="racomulada4" required="required" readonly="readonly" class="form-control"></td>
+            </tr>
+            <tr>
+                <td><input id="retraso5" name="retraso5" required="required" class="input-sm"></td>
+                <td><input id="rrelativa5" name="rrelativa5" required="required" class="form-control" onkeyup="sumarRetraso()"></td>
+                <td><input id="racomulada5" name="racomulada5" required="required" readonly="readonly" class="form-control"></td>
+            </tr>
+
+        </table>
+    </div>
+    <p>Cantidad numeros aleatorios <input id="numerostabla" name="numerostabla" type="number" required="required" class="form-control" /></p>
+
+    <button type="submit" class="btn btn-info">Siguiente</button>
+</div>
+    }

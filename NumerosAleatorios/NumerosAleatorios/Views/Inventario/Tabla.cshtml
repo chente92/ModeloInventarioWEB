@@ -1,0 +1,265 @@
+﻿
+<div class="row">
+    <div class="accordion" id="accordion2">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">
+                    > Variables
+                </a>
+
+            </div>
+
+            <div id="collapseOne" class="accordion-body collapse">
+                <div class="accordion-inner">
+                    <div class="row">
+
+                        <div class="col-md-4">
+                            <label> Cantidad de pedido (Q)</label>
+                            <input id="cantidadpedido" name="cantidadpedido" required="required" class="form-control" readonly="readonly" value="@ViewBag.ejercicio.cantidadPorPedido">
+
+                        </div>
+                        <div class="col-md-4">
+                            <label> Inventario inicial</label>
+                            <input id="inventarioinicial" name="inventarioinicial" required="required" class="form-control" readonly="readonly" value="@ViewBag.ejercicio.inventarioExistenciaInicial">
+                        </div>
+                        <div class="col-md-4">
+                            <label> Punto de reorden</label>
+                            <input id="puntoreorden" name="puntoreorden" required="required" class="form-control" readonly="readonly" value="@ViewBag.ejercicio.puntoReordenar">
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-inner">
+                    <div class="row">
+
+                        <div class="col-md-6">
+
+                            <h3>Distribucion</h3>
+
+
+                            <table class="table table-condensed">
+                                <tr>
+                                    <td>Demanda</td>
+                                    <td>Frecuencia Relativa</td>
+                                    <td>Frecuencia Acomulada</td>
+                                </tr>
+                                <tr>
+                                    <td><input id="demanda1" name="demanda1" required="required" class="input-sm" readonly="readonly" value="@ViewBag.ejercicio.demanda[0]"></td>
+                                    <td><input id="drelativa1" required="required" class="form-control" readonly="readonly" onkeyup="sumarDistribucion()" value="@ViewBag.ejercicio.distribucionRelativa[0]"></td>
+                                    <td><input id="dacomulada1" required="required" readonly="readonly" class="form-control" value="@ViewBag.ejercicio.distribucionAcomulada[0]"></td>
+                                </tr>
+                                <tr>
+                                    <td><input id="demanda2" name="demanda2" required="required" class="input-sm" readonly="readonly" value="@ViewBag.ejercicio.demanda[1]"></td>
+                                    <td><input id="drelativa2" required="required" class="form-control" readonly="readonly" onkeyup="sumarDistribucion()" value="@ViewBag.ejercicio.distribucionRelativa[1]"></td>
+                                    <td><input id="dacomulada2" required="required" readonly="readonly" class="form-control" value="@ViewBag.ejercicio.distribucionAcomulada[1]"></td>
+                                </tr>
+                                <tr>
+                                    <td><input id="demanda3" name="demanda3" required="required" class="input-sm" readonly="readonly" value="@ViewBag.ejercicio.demanda[2]"></td>
+                                    <td><input id="drelativa3" required="required" class="form-control" readonly="readonly" onkeyup="sumarDistribucion()" value="@ViewBag.ejercicio.distribucionRelativa[2]"></td>
+                                    <td><input id="dacomulada3" required="required" readonly="readonly" class="form-control" value="@ViewBag.ejercicio.distribucionAcomulada[2]"></td>
+                                </tr>
+                                <tr>
+                                    <td><input id="demanda4" name="demanda4" required="required" class="input-sm" readonly="readonly" value="@ViewBag.ejercicio.demanda[3]"></td>
+                                    <td><input id="drelativa4" required="required" class="form-control" readonly="readonly" onkeyup="sumarDistribucion()" value="@ViewBag.ejercicio.distribucionRelativa[3]"></td>
+                                    <td><input id="dacomulada4" required="required" readonly="readonly" class="form-control" value="@ViewBag.ejercicio.distribucionAcomulada[3]"></td>
+                                </tr>
+                                <tr>
+                                    <td><input id="demanda5" name="demanda5" required="required" class="input-sm" readonly="readonly" value="@ViewBag.ejercicio.demanda[4]"></td>
+                                    <td><input id="drelativa5" required="required" class="form-control" readonly="readonly" onkeyup="sumarDistribucion()" value="@ViewBag.ejercicio.distribucionRelativa[4]"></td>
+                                    <td><input id="dacomulada5" required="required" readonly="readonly" class="form-control" value="@ViewBag.ejercicio.distribucionAcomulada[4]"></td>
+                                </tr>
+
+                            </table>
+
+                        </div>
+                        <div class="col-md-6">
+                            <h3>Retraso</h3>
+                            <table class="table table-condensed">
+                                <tr>
+                                    <td>Retraso</td>
+                                    <td>Frecuencia Relativa</td>
+                                    <td>Frecuencia Acomulada</td>
+                                </tr>
+                                <tr>
+                                    <td><input id="retraso1" name="retraso1" required="required" class="input-sm" readonly="readonly" value="@ViewBag.ejercicio.retraso[0]"></td>
+                                    <td><input id="rrelativa1" required="required" class="form-control" readonly="readonly" onkeyup="sumarRetraso()" value="@ViewBag.ejercicio.retrasoRelativo[0]"></td>
+                                    <td><input id="racomulada1" required="required" readonly="readonly" class="form-control" value="@ViewBag.ejercicio.retrasoAcomulado[0]"></td>
+                                </tr>
+                                <tr>
+                                    <td><input id="retraso2" name="retraso2" required="required" class="input-sm" readonly="readonly" value="@ViewBag.ejercicio.retraso[1]"></td>
+                                    <td><input id="rrelativa2" required="required" class="form-control" readonly="readonly" onkeyup="sumarRetraso()" value="@ViewBag.ejercicio.retrasoRelativo[1]"></td>
+                                    <td><input id="racomulada2" required="required" readonly="readonly" class="form-control" value="@ViewBag.ejercicio.retrasoAcomulado[1]"></td>
+                                </tr>
+                                <tr>
+                                    <td><input id="retraso3" name="retraso3" required="required" class="input-sm" readonly="readonly" value="@ViewBag.ejercicio.retraso[2]"></td>
+                                    <td><input id="rrelativa3" required="required" class="form-control" readonly="readonly" onkeyup="sumarRetraso()" value="@ViewBag.ejercicio.retrasoRelativo[2]"></td>
+                                    <td><input id="racomulada3" required="required" readonly="readonly" class="form-control" value="@ViewBag.ejercicio.retrasoAcomulado[2]"></td>
+                                </tr>
+                                <tr>
+                                    <td><input id="retraso4" name="retras4" required="required" class="input-sm" readonly="readonly" value="@ViewBag.ejercicio.retraso[3]"></td>
+                                    <td><input id="rrelativa4" required="required" class="form-control" readonly="readonly" onkeyup="sumarRetraso()" value="@ViewBag.ejercicio.retrasoRelativo[3]"></td>
+                                    <td><input id="racomulada4" required="required" readonly="readonly" class="form-control" value="@ViewBag.ejercicio.retrasoAcomulado[3]"></td>
+                                </tr>
+                                <tr>
+                                    <td><input id="retraso5" name="retraso5" required="required" class="input-sm" readonly="readonly" value="@ViewBag.ejercicio.retraso[4]"></td>
+                                    <td><input id="rrelativa5" required="required" class="form-control" readonly="readonly" onkeyup="sumarRetraso()" value="@ViewBag.ejercicio.retrasoRelativo[4]"></td>
+                                    <td><input id="racomulada5" required="required" readonly="readonly" class="form-control" value="@ViewBag.ejercicio.retrasoAcomulado[4]"></td>
+                                </tr>
+
+                            </table>
+                        </div>
+                        <p>Cantidad numeros aleatorios <input id="numerostabla" readonly="readonly" name="numerostabla" type="number" required="required" class="form-control" value="@ViewBag.ejercicio.cantidadNumerosAleatorios" /></p>
+                        <button onclick="goBack()" class="btn btn-info">Editar</button>
+
+                    </div>
+                </div>
+                
+                    </div>
+           
+
+                </div>
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo">
+                    > Numeros Aleatorios
+                </a>
+
+            </div>
+
+            <div id="collapseTwo" class="accordion-body collapse">
+                <div class="accordion-inner">
+                    <div class="row">
+                        <table class="table table-bordered">
+                            <tr>
+                                @for (int i = 0; i < ViewBag.ejercicio.cantidadNumerosAleatorios; i++)
+                                {
+
+                                    <td>
+                                        @{
+                                    int count = i + 1;
+                                        }
+                                        @count
+                                    </td>
+                                }
+                            </tr>
+
+                            <tr class="trdistribucion">
+                                @for (int i = 0; i < ViewBag.ejercicio.cantidadNumerosAleatorios; i++)
+                                {
+
+                                    <td>
+                                        
+                                        <input id="distribucion_@i" name="distribucion_@i" required="required" class="form-control" readonly="readonly" value="@ViewBag.ejercicio.aleatoriosDistribucion[i]">
+                                    </td>
+                                }
+
+                                
+
+                            </tr>
+
+                            <tr class="trretraso">
+                                @for (int i = 0; i < ViewBag.ejercicio.cantidadNumerosAleatorios; i++)
+                                {
+
+                                    <td>
+                                        
+                                        <input id="retraso_@i " name="retraso_@i" required="required" class="form-control" readonly="readonly" value="@ViewBag.ejercicio.aleatoriosRetraso[i]">
+                                    </td>
+                                }
+                                
+                            </tr>
+                        </table>
+                    </div>
+
+                </div>
+            </div>
+
+
+        </div>
+
+
+            </div>
+
+    <div class="table-responsive">
+
+        <table class="table table-bordered table-striped">
+
+            <thead>
+
+                <tr>
+                    <th>#</th>
+                    <th>Inventario inicial</th>
+                    <th>Número aleatorio (Demanda)</th>
+                    <th>Demanda simulada</th>
+                    <th>Invetario final</th>
+                    <th>Ventas perdidas x escasez</th>
+                    <th>Colocar pedido</th>
+                    <th>Cantidad pedida Q=</th>
+                    <th>Número aleatorio (entrega)</th>
+                    <th>Retraso simulado</th>
+                    <th>Cantidad entregada</th>
+
+
+
+
+
+                </tr>
+            </thead>
+            <tbody>
+                @for (int i = 0; i < ViewBag.ejercicio.cantidadNumerosAleatorios; i++)
+                {
+                    <tr>
+                        <td>
+                            @ViewBag.ejercicio.tablaResultado.filas[i].iteracionNumero
+                        </td>
+                        <td>
+                            @ViewBag.ejercicio.tablaResultado.filas[i].inventarioInicial
+                        </td>
+                        <td>
+                            @ViewBag.ejercicio.tablaResultado.filas[i].numeroAleatorioDemanda
+                        </td>
+                        <td>
+                            @ViewBag.ejercicio.tablaResultado.filas[i].ventasUnidades
+                        </td>
+                        <td>
+                            @ViewBag.ejercicio.tablaResultado.filas[i].inventraioFinal
+                        </td>
+                        <td>
+                            @ViewBag.ejercicio.tablaResultado.filas[i].ventasPerdidasEscasez
+                        </td>
+                        <td>
+                            @ViewBag.ejercicio.tablaResultado.filas[i].colocarPedido
+                        </td>
+                        <td>
+                            @ViewBag.ejercicio.tablaResultado.filas[i].cantidadPedidoSolicitado
+                        </td>
+                        <td>
+                            @{
+                    string numeroAleatorioEntrega = "";
+                    if (ViewBag.ejercicio.tablaResultado.filas[i].numeroAleatorioEntrega == 0)
+                    {
+
+                    }
+                    else
+                    {
+                        numeroAleatorioEntrega = Convert.ToString(ViewBag.ejercicio.tablaResultado.filas[i].numeroAleatorioEntrega);
+                    }
+                            }
+                            @numeroAleatorioEntrega
+                        </td>
+                        <td>
+
+                            @ViewBag.ejercicio.tablaResultado.filas[i].retrasoPedido
+                        </td>
+                        <td>
+                            @ViewBag.ejercicio.tablaResultado.filas[i].recibosBodega
+                        </td>
+
+
+
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+</div>
